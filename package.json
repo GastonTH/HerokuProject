@@ -1,0 +1,23 @@
+{
+  "name": "herokufallas",
+  "version": "1.0.0",
+  "description": "Repositorio gestionado por heroku",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GastonTH/HerokuProjectFallas.git"
+  },
+  "author": "Gaston Tomas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GastonTH/HerokuProjectFallas/issues"
+  },
+  "homepage": "https://github.com/GastonTH/HerokuProjectFallas#readme"
+}
