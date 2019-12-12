@@ -18,17 +18,18 @@
     <h1>Fallas de Valencia</h1>
 
     <div id="modificadores">
-        <p>Seccion</p>
-        <select name="seccionDeFallas" id="selectFallas"></select>
         <p>Año de fundacion</p>
         <input type="text" id="desde" placeholder="Desde"><br><br>
         <input type="text" id="hasta" placeholder="Hasta">
-        <input type="radio" name="" id="Principal">
-        <input type="radio" name="" id="Infantil">
-        <button>Buscar</button>
+        <br><br>
+        <input type="radio" name="seleccionTamano" value="todas" checked="checked">Todas</input>
+        <input type="radio" name="seleccionTamano" value="principal">Principal</input>
+        <input type="radio" name="seleccionTamano" value="infantil">Infantil</input>
+        <p>Seccion</p>
+        <select name="" id="selectFallas"></select>
     </div>
 
-    <div id="listaFallas"></div>
+    <div id="listaFallas" class="grid3column"></div>
 
 </body>
 
