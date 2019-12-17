@@ -10,7 +10,7 @@ let jsonFile;
 function init() {
 
     document.getElementsByName("seleccionTamano").forEach(element => element.addEventListener("change", cambio));
-    //document.getElementById("selectSeccionFallas").addEventListener("change", cambio);
+    document.getElementById("selectSeccionFallas").addEventListener("change", cambio);
     descargarJson();
 
 }
@@ -48,10 +48,14 @@ function cambio() {
 
 }
 
-function promesaCreadoraDelTodo(tamano) {
+function promesaCreadoraDelTodo(tamano, seleccion) {
 
     document.getElementById("listaFallas").innerHTML = "";
+    document.getElementById("selectSeccionFallas").innerHTML = "";
 
+
+
+    //if (document.getElementsByName("seleccionTamano")[0].checked) { asdfasdf }
     //const filtro = jsonDevuelto.features.filter(busquedaJson);
 
     //esto crea el div de la lista de las fallas
@@ -72,25 +76,26 @@ function promesaCreadoraDelTodo(tamano) {
 
         //creo el array de secciones con el set, que hace que no se repita lo que le pasen
 
-        //secciones.add(iteracion.properties.seccion);
-
         //aqui añado todo lo creado iterativamente
 
         if (tamano == "infantil") {
             falla.appendChild(imagenI);
+            seccioneSet.add(iteracion.properties.seccion_i);
 
             //console.log("infantil");
         } else if (tamano == "principal") {
             falla.appendChild(imagenP);
+            seccioneSet.add(iteracion.properties.seccion);
 
             //console.log("principal");
-        } else if ("todas") {
-            falla.appendChild(imagenP);
-            falla.appendChild(imagenI);
-            falla.appendChild(imagenI);
-
-            //console.log("infantil");
         }
+        /*else if ("todas") {
+                   falla.appendChild(imagenP);
+                   falla.appendChild(imagenI);
+                   falla.appendChild(imagenI);
+
+                   //console.log("infantil");
+               }*/
 
         falla.appendChild(parrafo);
         falla.appendChild(boton);
@@ -99,8 +104,7 @@ function promesaCreadoraDelTodo(tamano) {
 
     });
     //aqui creamos el select
-
-    //console.log(secciones);
+    console.log(seccioneSet);
 
     //lo recorremos y le añadimos la opcion
 
