@@ -1,16 +1,15 @@
 window.onload = init;
-//variable que usamos para saber que se ha seleccionado en el select de secciones
-
-let filtroSeccion = "";
 
 //para cuando cree el json, lo guarde
-let jsonOriginal;
 let jsonFile;
+
+//value de la seccion
+let seccionFiltro = "";
 
 function init() {
 
-    document.getElementsByName("seleccionTamano").forEach(element => element.addEventListener("change", cambio));
-    document.getElementById("selectSeccionFallas").addEventListener("change", cambio);
+    document.getElementsByName("seleccionTamano").forEach(element => element.addEventListener("change", promesaCreadoraDelTodo));
+    document.getElementById("selectSeccionFallas").addEventListener("change", cambiarFallas);
     descargarJson();
 
 }
@@ -27,40 +26,51 @@ function descargarJson() {
 
         console.log(jsonDevuelto);
 
-    }).then(cambio);
+    }).then(promesaCreadoraDelTodo);
 }
 
+function cambiarFallas() {
 
-//esta funcion muestra de forma dinamica el cambio de las modalidades
-function cambio() {
+    seccionFiltro = this.value;
+    document.getElementById("listaFallas").innerHTML = "";
 
-    console.log(this.value);
+    let filtro = jsonFile.features.filter(busquedaJson);
 
-    //opcion obligatoria ya que no lo llamo de otra forma XD
-    if (this.value == undefined) {
+    filtro.forEach(iteracion => {
+        let falla = document.createElement("div");
+        let parrafo = document.createElement("p");
+        let imagenP = document.createElement("img");
+        let imagenI = document.createElement("img");
+        let boton = document.createElement("button");
+        //boton.innerHTML = "Ubicacion";
+        //boton.addEventListener("click", llamadaUbicacion);
+        imagenI.src = iteracion.properties.boceto_i;
+        imagenP.src = iteracion.properties.boceto;
+        parrafo.innerHTML = iteracion.properties.nombre;
 
-        promesaCreadoraDelTodo("principal");
+        //creo el array de secciones con el set, que hace que no se repita lo que le pasen
 
-    } else {
+        //aqui añado todo lo creado iterativamente
 
-        promesaCreadoraDelTodo(this.value);
-    }
+        if (document.getElementsByName("seleccionTamano")[1].checked) {
+            falla.appendChild(imagenI);
+        } else if (document.getElementsByName("seleccionTamano")[0].checked) {
+            falla.appendChild(imagenP);
+        }
+
+        falla.appendChild(parrafo);
+        falla.appendChild(boton);
+        document.getElementById("listaFallas").appendChild(falla);
+    });
 
 }
 
-function promesaCreadoraDelTodo(tamano, seleccion) {
+function promesaCreadoraDelTodo() {
 
     document.getElementById("listaFallas").innerHTML = "";
     document.getElementById("selectSeccionFallas").innerHTML = "";
 
-
-
-    //if (document.getElementsByName("seleccionTamano")[0].checked) { asdfasdf }
-    //const filtro = jsonDevuelto.features.filter(busquedaJson);
-
-    //esto crea el div de la lista de las fallas
-
-    let seccioneSet = new Set;
+    cargarSecciones();
 
     jsonFile.features.forEach(iteracion => {
         let falla = document.createElement("div");
@@ -78,24 +88,11 @@ function promesaCreadoraDelTodo(tamano, seleccion) {
 
         //aqui añado todo lo creado iterativamente
 
-        if (tamano == "infantil") {
+        if (document.getElementsByName("seleccionTamano")[1].checked) {
             falla.appendChild(imagenI);
-            seccioneSet.add(iteracion.properties.seccion_i);
-
-            //console.log("infantil");
-        } else if (tamano == "principal") {
+        } else if (document.getElementsByName("seleccionTamano")[0].checked) {
             falla.appendChild(imagenP);
-            seccioneSet.add(iteracion.properties.seccion);
-
-            //console.log("principal");
         }
-        /*else if ("todas") {
-                   falla.appendChild(imagenP);
-                   falla.appendChild(imagenI);
-                   falla.appendChild(imagenI);
-
-                   //console.log("infantil");
-               }*/
 
         falla.appendChild(parrafo);
         falla.appendChild(boton);
@@ -103,10 +100,35 @@ function promesaCreadoraDelTodo(tamano, seleccion) {
 
 
     });
-    //aqui creamos el select
-    console.log(seccioneSet);
 
-    //lo recorremos y le añadimos la opcion
+}
+//esta funcion devuelve true or false si se cumple la condicion
+function busquedaJson(iteracion) {
+
+    if (document.getElementsByName("seleccionTamano")[0].checked) { // principal
+        return iteracion.properties.seccion.startsWith(seccionFiltro);
+    } else { // infantil
+        return iteracion.properties.seccion_i.startsWith(seccionFiltro);
+    }
+
+}
+
+//esta funcion carga las secciones, distinguiendo si es 
+function cargarSecciones() {
+
+    let seccioneSet = new Set;
+
+    jsonFile.features.forEach(iteracion => {
+
+        if (document.getElementsByName("seleccionTamano")[1].checked) { //infantil
+            seccioneSet.add(iteracion.properties.seccion_i);
+
+        } else if (document.getElementsByName("seleccionTamano")[0].checked) { //principal
+            seccioneSet.add(iteracion.properties.seccion);
+
+        }
+
+    });
 
     let opTodas = document.createElement("option");
     opTodas.innerHTML = "Todas";
@@ -118,5 +140,4 @@ function promesaCreadoraDelTodo(tamano, seleccion) {
         document.getElementById("selectSeccionFallas").appendChild(opcion);
         //console.log(element);
     });
-
 }
