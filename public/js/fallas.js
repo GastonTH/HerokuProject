@@ -36,12 +36,16 @@ function cambiarFallas() {
 
     let filtro = jsonFile.features.filter(busquedaJson);
 
+    //console.log("filtro realizado");
+
+    //esto es la creacion del "frame" donde se almacena la falla
     filtro.forEach(iteracion => {
         let falla = document.createElement("div");
-        let parrafo = document.createElement("p");
-        let imagenP = document.createElement("img");
+        falla.classList.add("falla");
+        //let parrafo = document.createElement("p");
+        //let imagenP = document.createElement("img");
         let imagenI = document.createElement("img");
-        let boton = document.createElement("button");
+        //let boton = document.createElement("button");
         //boton.innerHTML = "Ubicacion";
         //boton.addEventListener("click", llamadaUbicacion);
         imagenI.src = iteracion.properties.boceto_i;
@@ -59,12 +63,13 @@ function cambiarFallas() {
         }
 
         falla.appendChild(parrafo);
-        falla.appendChild(boton);
+        //falla.appendChild(boton);
         document.getElementById("listaFallas").appendChild(falla);
     });
 
 }
 
+//es la funcion que lanza despues de descargar todo el json (creo que esta mal XD)
 function promesaCreadoraDelTodo() {
 
     document.getElementById("listaFallas").innerHTML = "";
@@ -74,14 +79,16 @@ function promesaCreadoraDelTodo() {
 
     jsonFile.features.forEach(iteracion => {
         let falla = document.createElement("div");
+        falla.classList.add("falla");
+        falla.addEventListener("mouseover", mostrarInfoFalla);
         let parrafo = document.createElement("p");
         let imagenP = document.createElement("img");
         let imagenI = document.createElement("img");
-        let boton = document.createElement("button");
+        //let boton = document.createElement("button");
         //boton.innerHTML = "Ubicacion";
         //boton.addEventListener("click", llamadaUbicacion);
-        imagenI.src = iteracion.properties.boceto_i;
-        imagenP.src = iteracion.properties.boceto;
+        //imagenI.src = iteracion.properties.boceto_i;
+        //imagenP.src = iteracion.properties.boceto;
         parrafo.innerHTML = iteracion.properties.nombre;
 
         //creo el array de secciones con el set, que hace que no se repita lo que le pasen
@@ -95,7 +102,7 @@ function promesaCreadoraDelTodo() {
         }
 
         falla.appendChild(parrafo);
-        falla.appendChild(boton);
+        //falla.appendChild(boton);
         document.getElementById("listaFallas").appendChild(falla);
 
 
@@ -140,4 +147,10 @@ function cargarSecciones() {
         document.getElementById("selectSeccionFallas").appendChild(opcion);
         //console.log(element);
     });
+}
+
+function mostrarInfoFalla(e) {
+
+    console.log(this);
+
 }
