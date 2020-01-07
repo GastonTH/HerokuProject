@@ -1,32 +1,38 @@
 :root {
-    --color-auxiliar-1: #e2f3f5;
-    --color-auxiliar-2: #22d1ee;
-    --color-auxiliar-3: #3d5af1;
-    --color-auxiliar-4: #0e153a;
-    --margin-div-falla: 20px;
-}
+  --color-auxiliar-1: #e2f3f5;
+  --color-auxiliar-2: #22d1ee;
+  --color-auxiliar-3: #3d5af1;
+  --color-auxiliar-4: #0e153a;
+  --margin-div-falla: 20px; }
 
 body {
-    background-color: var(--color-auxiliar-1);
-    height: 100%;
-    width: 100%;
-}
+  background-color: var(--color-auxiliar-1);
+  height: 100%;
+  width: 100%; }
+  body #containerFallas {
+    display: flex;
+    justify-content: center;
+    align-content: center; }
+  body #modificadores {
+    margin-left: 10px; }
 
 .grid3column {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
-
-
-/*.grid2column {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}*/
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); }
 
 .falla {
-    height: 300px;
-    width: 400px;
-    border: 1px solid red;
-    /*margen variable*/
-    margin: var(--margin-div-falla);
-}
+  height: 300px;
+  width: 400px;
+  background-color: whitesmoke;
+  border: 1px solid black;
+  /*margen variable*/
+  margin: var(--margin-div-falla);
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .falla img {
+    height: 250px;
+    width: 250px;
+    margin-top: 10px; }
+
+/*# sourceMappingURL=fallas.css.map */
