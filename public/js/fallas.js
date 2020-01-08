@@ -134,20 +134,16 @@ function busquedaAnyo(iteracion) {
     }
 
     if (valorHasta == '') {
-        valorHasta = 0;
+        valorHasta = 9999;
     }
 
-    console.log(iteracion.properties.anyo_fundacion_i.startsWith());
+    if (valorDesde == 0 && valorHasta == 9999) {
+        return true;
+    }
 
-    if (document.getElementById("desde").value == '') {
-        return true
-    } else {
-
-        if (document.getElementsByName("seleccionTamano")[0].checked) { // principal
-            return (iteracion.properties.anyo_fundacion <= valorDesde && iteracion.properties.anyo_fundacion >= valorHasta);
-        } else { // infantil
-            return (iteracion.properties.anyo_fundacion_i <= valorDesde && iteracion.properties.anyo_fundacion_i >= valorHasta);
-        }
+    if (valorDesde <= iteracion.properties.anyo_fundacion && valorHasta >= iteracion.properties.anyo_fundacion) {
+        console.log("cumple la condicion");
+        return iteracion.properties.anyo_fundacion;
     }
 }
 
