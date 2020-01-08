@@ -109,13 +109,15 @@ function busquedaSeccion(iteracion) {
     console.log(seccionFiltro.value);
 
     if (seccionFiltro.value == "Todas") {
+
         return true;
+
     } else {
 
         if (document.getElementsByName("seleccionTamano")[0].checked) { // principal
-            return iteracion.properties.seccion.startsWith(seccionFiltro);
+            return iteracion.properties.seccion.startsWith(seccionFiltro.value);
         } else { // infantil
-            return iteracion.properties.seccion_i.startsWith(seccionFiltro);
+            return iteracion.properties.seccion_i.startsWith(seccionFiltro.value);
         }
     }
 }
