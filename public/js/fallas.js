@@ -11,7 +11,10 @@ let seccionFiltro = "";
 let desde = "";
 let hasta = "";
 
+//variable de la estrella
+let estrella = "✦";
 
+//init
 function init() {
 
     document.getElementsByName("seleccionTamano").forEach(element => element.addEventListener("change", promesaCreadoraDelTodo));
@@ -65,11 +68,7 @@ function promesaCreadoraDelTodo() {
     seccionFiltro = document.getElementById("selectSeccionFallas");
 
     let filtroSecciones = jsonFile.features.filter(busquedaSeccion);
-    //console.log(filtroSecciones);
     let filtroAnyo = filtroSecciones.filter(busquedaAnyo);
-    //console.log(filtroAnyo);
-    //console.log(document.getElementById("desde").value);
-    //console.log(document.getElementById("hasta").value);
 
     filtroAnyo.forEach(iteracion => {
 
@@ -97,6 +96,9 @@ function promesaCreadoraDelTodo() {
         }
 
         falla.appendChild(parrafo);
+
+        cargarEstrellas(falla, iteracion);
+
         //falla.appendChild(boton);
         document.getElementById("listaFallas").appendChild(falla);
 
@@ -108,7 +110,7 @@ function promesaCreadoraDelTodo() {
 //----------------------AQUI ESTAN LOS FILTROS----------------------------
 function busquedaSeccion(iteracion) {
 
-    console.log(seccionFiltro.value);
+    //console.log(seccionFiltro.value);
 
     if (seccionFiltro.value == "Todas") {
 
@@ -117,9 +119,9 @@ function busquedaSeccion(iteracion) {
     } else {
 
         if (document.getElementsByName("seleccionTamano")[0].checked) { // principal
-            return iteracion.properties.seccion.startsWith(seccionFiltro.value);
+            return iteracion.properties.seccion == seccionFiltro.value;
         } else { // infantil
-            return iteracion.properties.seccion_i.startsWith(seccionFiltro.value);
+            return iteracion.properties.seccion_i == seccionFiltro.value;
         }
     }
 }
@@ -177,6 +179,31 @@ function cargarSecciones() {
         document.getElementById("selectSeccionFallas").appendChild(opcion);
         //console.log(element);
     });
+}
+
+//forma de cargar las estrellas dinamicamente
+function cargarEstrellas(fallaTraida, iteracionTraida) {
+
+    let formulario = document.createElement("form");
+    //formulario.setAttribute('method', "post");
+    //formulario.setAttribute('action', "submit.php");
+    let inputHidden = document.createElement("input");
+    inputHidden.setAttribute('type', 'hidden');
+    inputHidden.value = iteracionTraida.properties.id;
+
+    formulario.appendChild(inputHidden);
+
+    fallaTraida.appendChild(formulario);
+
+    for (let i = 1; i <= 5; i++) {
+
+        let labelEstrella = document.createElement("label");
+        labelEstrella.innerHTML = "✦";
+        formulario.appendChild(labelEstrella);
+
+    }
+
+
 }
 
 function mostrarInfoFalla(e) {

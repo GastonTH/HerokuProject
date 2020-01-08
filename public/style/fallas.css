@@ -21,7 +21,7 @@ body {
   grid-template-columns: repeat(3, 1fr); }
 
 .falla {
-  height: 300px;
+  height: 450px;
   width: 400px;
   background-color: whitesmoke;
   border: 1px solid black;
@@ -34,5 +34,31 @@ body {
     height: 250px;
     width: 250px;
     margin-top: 10px; }
+
+#form {
+  width: 250px;
+  margin: 0 auto;
+  height: 50px; }
+  #form p {
+    text-align: center; }
+  #form label {
+    size: 80px; }
+
+/*input[type="radio"] {
+    display: none;
+}*/
+label {
+  color: grey; }
+
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override; }
+
+label:hover,
+label:hover ~ label {
+  color: orange; }
+
+input[type="radio"]:checked ~ label {
+  color: orange; }
 
 /*# sourceMappingURL=fallas.css.map */
