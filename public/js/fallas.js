@@ -17,6 +17,8 @@ function init() {
     document.getElementsByName("seleccionTamano").forEach(element => element.addEventListener("change", promesaCreadoraDelTodo));
     document.getElementById("selectSeccionFallas").addEventListener("change", promesaCreadoraDelTodo);
     document.getElementById("desde").addEventListener("input", promesaCreadoraDelTodo);
+    document.getElementById("hasta").addEventListener("input", promesaCreadoraDelTodo);
+
     descargarJson();
 
 }
@@ -69,7 +71,7 @@ function promesaCreadoraDelTodo() {
     //console.log(document.getElementById("desde").value);
     //console.log(document.getElementById("hasta").value);
 
-    filtroSecciones.forEach(iteracion => {
+    filtroAnyo.forEach(iteracion => {
 
         //------------------------------//
         //aqui se crea la falla como tal//
@@ -127,6 +129,14 @@ function busquedaAnyo(iteracion) {
     let valorDesde = document.getElementById("desde").value;
     let valorHasta = document.getElementById("hasta").value;
 
+    if (valorDesde == '') {
+        valorDesde = 0;
+    }
+
+    if (valorHasta == '') {
+        valorHasta = 0;
+    }
+
     console.log(iteracion.properties.anyo_fundacion_i.startsWith());
 
     if (document.getElementById("desde").value == '') {
@@ -134,9 +144,9 @@ function busquedaAnyo(iteracion) {
     } else {
 
         if (document.getElementsByName("seleccionTamano")[0].checked) { // principal
-            return iteracion.properties.anyo_fundacion.startsWith(valorDesde);
+            return (iteracion.properties.anyo_fundacion <= valorDesde && iteracion.properties.anyo_fundacion >= valorHasta);
         } else { // infantil
-            return iteracion.properties.anyo_fundacion_i.startsWith();
+            return (iteracion.properties.anyo_fundacion_i <= valorDesde && iteracion.properties.anyo_fundacion_i >= valorHasta);
         }
     }
 }
