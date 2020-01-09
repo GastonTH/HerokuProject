@@ -23,7 +23,7 @@ body {
 .falla {
   height: 450px;
   width: 400px;
-  background-color: whitesmoke;
+  background-color: white;
   border: 1px solid black;
   /*margen variable*/
   margin: var(--margin-div-falla);
@@ -31,8 +31,8 @@ body {
   flex-direction: column;
   align-items: center; }
   .falla img {
-    height: 250px;
-    width: 250px;
+    height: 300px;
+    width: 300px;
     margin-top: 10px; }
 
 #form {
@@ -50,15 +50,20 @@ body {
 label {
   color: grey; }
 
-.clasificacion {
-  direction: rtl;
-  unicode-bidi: bidi-override; }
-
 label:hover,
 label:hover ~ label {
   color: orange; }
 
 input[type="radio"]:checked ~ label {
+  color: orange; }
+
+.calificacion {
+  direction: rtl;
+  /* right to left */
+  unicode-bidi: bidi-override; }
+
+.pulsado,
+.pulsado ~ label {
   color: orange; }
 
 /*# sourceMappingURL=fallas.css.map */

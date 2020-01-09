@@ -12,7 +12,14 @@ let desde = "";
 let hasta = "";
 
 //variable de la estrella
-let estrella = "✦";
+let numeroEstrellas = "";
+let idFallaEnviar = "";
+
+//let si ha puntuado
+let puntuadoIp = false;
+
+//json de mongo
+let jsonMongo;
 
 //init
 function init() {
@@ -47,6 +54,8 @@ let sec = 0;
 //es la funcion que lanza despues de descargar todo el json
 function promesaCreadoraDelTodo() {
 
+    cargarMongo();
+
     //detecta que es todas
     if (document.getElementById("selectSeccionFallas").selectedIndex == -1) {
         sec = 0;
@@ -77,14 +86,15 @@ function promesaCreadoraDelTodo() {
         //------------------------------//
         let falla = document.createElement("div");
         falla.classList.add("falla");
+
+        falla.dataset.idFalla = iteracion.properties.id;
+
         //falla.addEventListener("mouseover", mostrarInfoFalla);
         //falla.addEventListener("mouseout", borrarClase);
         let parrafo = document.createElement("p");
         let imagenP = document.createElement("img");
         let imagenI = document.createElement("img");
-        //let boton = document.createElement("button");
-        //boton.innerHTML = "Ubicacion";
-        //boton.addEventListener("click", llamadaUbicacion);
+
         imagenI.src = iteracion.properties.boceto_i;
         imagenP.src = iteracion.properties.boceto;
         parrafo.innerHTML = iteracion.properties.nombre;
@@ -99,7 +109,11 @@ function promesaCreadoraDelTodo() {
 
         cargarEstrellas(falla, iteracion);
 
-        //falla.appendChild(boton);
+        let boton = document.createElement("button");
+        boton.innerHTML = "Enviar";
+        boton.addEventListener("click", valorar);
+        falla.appendChild(boton);
+        //ultimo paso
         document.getElementById("listaFallas").appendChild(falla);
 
 
@@ -185,27 +199,30 @@ function cargarSecciones() {
 function cargarEstrellas(fallaTraida, iteracionTraida) {
 
     let formulario = document.createElement("form");
-    //formulario.setAttribute('method', "post");
-    //formulario.setAttribute('action', "submit.php");
+    formulario.classList.add("calificacion");
+    formulario.setAttribute('method', 'POST');
     let inputHidden = document.createElement("input");
     inputHidden.setAttribute('type', 'hidden');
     inputHidden.value = iteracionTraida.properties.id;
 
     formulario.appendChild(inputHidden);
 
-    fallaTraida.appendChild(formulario);
+    let p = document.createElement("p");
 
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 5; i >= 1; i--) {
 
         let labelEstrella = document.createElement("label");
         labelEstrella.innerHTML = "✦";
+        labelEstrella.dataset.estrella = i;
+        labelEstrella.addEventListener("click", seleccionEstrella);
         formulario.appendChild(labelEstrella);
 
     }
-
+    //final
+    fallaTraida.appendChild(formulario);
 
 }
-
+/*
 function mostrarInfoFalla(e) {
 
     this.classList.add("hacerGrande");
@@ -216,5 +233,53 @@ function mostrarInfoFalla(e) {
 function borrarClase(e) {
 
     this.classList.remove("hacerGrande");
+
+}
+*/
+function seleccionEstrella(e) {
+    let padreDelPadre = this.parentElement.parentElement;
+    numeroEstrellas = this.dataset.estrella;
+    idFallaEnviar = padreDelPadre.dataset.idFalla;
+    this.classList.toggle("pulsado");
+
+    if (padreDelPadre.dataset.idFalla == idFallaEnviar) {
+        console.log("se puede enviar el id falla - " + idFallaEnviar + ", numeroEstrellas - " + numeroEstrellas);
+    } else {
+        console.log("puntua esta falla, no otra");
+        //crear un div que diga eso
+    }
+
+}
+
+//esta es la llamada que tendra el boton
+function valorar(e) {
+
+    //enviar un array de datos
+
+    var url = '/puntuaciones';
+    var data = { idFalla: idFallaEnviar, ip: '127.0.0.1', puntuacion: numeroEstrellas }; //idfalla, ip, puntuacion
+
+    fetch(url, {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => console.log('Success:', response));
+
+}
+
+function cargarMongo() {
+
+    fetch("/puntuaciones", {
+            method: 'GET', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => console.log('Success:', response));
 
 }

@@ -28,7 +28,7 @@ body {
 .falla {
     height: 450px;
     width: 400px;
-    background-color: whitesmoke;
+    background-color: white;
     border: 1px solid black;
     /*margen variable*/
     margin: var(--margin-div-falla);
@@ -36,8 +36,8 @@ body {
     flex-direction: column;
     align-items: center;
     img {
-        height: 250px;
-        width: 250px;
+        height: 300px;
+        width: 300px;
         margin-top: 10px;
     }
 }
@@ -63,11 +63,6 @@ label {
     color: grey;
 }
 
-.clasificacion {
-    direction: rtl;
-    unicode-bidi: bidi-override;
-}
-
 label:hover,
 label:hover~label {
     color: orange;
@@ -77,9 +72,20 @@ input[type="radio"]:checked~label {
     color: orange;
 }
 
+.calificacion {
+    direction: rtl;
+    /* right to left */
+    unicode-bidi: bidi-override;
+}
+
 .hacerGrande {
     //transition: linear;
     //transform: scale(1.5);
     //animation-duration: 1s;
     //box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.pulsado,
+.pulsado~label {
+    color: orange;
 }
