@@ -21,8 +21,13 @@ let puntuadoIp = false;
 //json de mongo
 let jsonMongo;
 
+//ip del dispositivo que accede
+let ip = "";
+
 //init
 function init() {
+
+    get_ip();
 
     document.getElementsByName("seleccionTamano").forEach(element => element.addEventListener("change", promesaCreadoraDelTodo));
     document.getElementById("selectSeccionFallas").addEventListener("change", promesaCreadoraDelTodo);
@@ -111,7 +116,7 @@ function promesaCreadoraDelTodo() {
 
         let boton = document.createElement("button");
         boton.innerHTML = "Enviar";
-        boton.addEventListener("click", valorar);
+        boton.addEventListener("click", comprobarEnvio);
         falla.appendChild(boton);
         //ultimo paso
         document.getElementById("listaFallas").appendChild(falla);
@@ -120,6 +125,19 @@ function promesaCreadoraDelTodo() {
     });
 
 }
+
+//funcion que coje la ip
+function get_ip() {
+    fetch("https://api.ipify.org/?format=jsonp&callback=get_ip").then(res => {
+        console.log(res);
+    }).then(res => {
+
+        console.log(res);
+
+    });
+}
+
+
 //esta funcion devuelve true or false si se cumple la condicion
 //----------------------AQUI ESTAN LOS FILTROS----------------------------
 function busquedaSeccion(iteracion) {
@@ -251,10 +269,26 @@ function seleccionEstrella(e) {
 
 }
 
+
+//pequeño paso entes de enviar
+function comprobarEnvio(e) {
+
+    let padre = this.parentElement;
+    console.log(padre);
+
+    if (padre.dataset.idFalla != idFallaEnviar) {
+        alert("comprueba que has votado o puntuado correctamente.");
+    }
+
+}
 //esta es la llamada que tendra el boton
 function valorar(e) {
 
     //enviar un array de datos
+
+    if (numeroEstrellas == '' || numeroEstrellas == null) {
+        numeroEstrellas == 0;
+    }
 
     var url = '/puntuaciones';
     var data = { idFalla: idFallaEnviar, ip: '127.0.0.1', puntuacion: numeroEstrellas }; //idfalla, ip, puntuacion

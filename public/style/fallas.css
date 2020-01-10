@@ -55,7 +55,7 @@ label:hover ~ label {
   color: orange; }
 
 input[type="radio"]:checked ~ label {
-  color: orange; }
+  color: blue; }
 
 .calificacion {
   direction: rtl;
