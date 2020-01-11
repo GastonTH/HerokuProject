@@ -24,16 +24,25 @@ let jsonMongo;
 //ip del dispositivo que accede
 let ip = "";
 
+//variable que dice en que parte del selector de la seccion de fallas estas XD
+let sec = 0;
+
 //init
 function init() {
 
+    //coge la ip del dispositivo
     getIP();
+    //carga toda la base de datos de mongo
+    cargarMongo();
+    //comprueba si has votado
+    comprobarSiHaVotado();
 
     document.getElementsByName("seleccionTamano").forEach(element => element.addEventListener("change", promesaCreadoraDelTodo));
     document.getElementById("selectSeccionFallas").addEventListener("change", promesaCreadoraDelTodo);
     document.getElementById("desde").addEventListener("input", promesaCreadoraDelTodo);
     document.getElementById("hasta").addEventListener("input", promesaCreadoraDelTodo);
 
+    //descarga todo el json de las fallas
     descargarJson();
 
 }
@@ -53,13 +62,15 @@ function descargarJson() {
     }).then(promesaCreadoraDelTodo);
 }
 
-let sec = 0;
 
+function comprobarSiHaVotado() {
+
+
+
+}
 
 //es la funcion que lanza despues de descargar todo el json
 function promesaCreadoraDelTodo() {
-
-    cargarMongo();
 
     //detecta que es todas
     if (document.getElementById("selectSeccionFallas").selectedIndex == -1) {
@@ -317,6 +328,8 @@ function cargarMongo() {
             }
         }).then(res => res.json())
         .catch(error => console.error('Error:', error))
-        .then(response => console.log('Success:', response));
+        .then(respuesta =>
+            console.log(jsonMongo = respuesta) /*, jsonMongo = respuesta*/
+        );
 
 }
