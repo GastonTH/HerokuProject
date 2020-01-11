@@ -27,7 +27,7 @@ let ip = "";
 //init
 function init() {
 
-    get_ip();
+    getIP();
 
     document.getElementsByName("seleccionTamano").forEach(element => element.addEventListener("change", promesaCreadoraDelTodo));
     document.getElementById("selectSeccionFallas").addEventListener("change", promesaCreadoraDelTodo);
@@ -127,14 +127,16 @@ function promesaCreadoraDelTodo() {
 }
 
 //funcion que coje la ip
-function get_ip() {
-    fetch("https://api.ipify.org/?format=jsonp&callback=get_ip").then(res => {
-        console.log(res);
-    }).then(res => {
+function getIP(obj) {
 
-        console.log(res);
+    try {
+        ip = obj.ip;
 
-    });
+    } catch (error) {
+
+    }
+
+
 }
 
 
@@ -269,7 +271,6 @@ function seleccionEstrella(e) {
 
 }
 
-
 //pequeño paso entes de enviar
 function comprobarEnvio(e) {
 
@@ -278,6 +279,8 @@ function comprobarEnvio(e) {
 
     if (padre.dataset.idFalla != idFallaEnviar) {
         alert("comprueba que has votado o puntuado correctamente.");
+    } else {
+        valorar();
     }
 
 }
@@ -291,7 +294,7 @@ function valorar(e) {
     }
 
     var url = '/puntuaciones';
-    var data = { idFalla: idFallaEnviar, ip: '127.0.0.1', puntuacion: numeroEstrellas }; //idfalla, ip, puntuacion
+    var data = { idFalla: idFallaEnviar, ip: ip, puntuacion: numeroEstrellas }; //idfalla, ip, puntuacion
 
     fetch(url, {
             method: 'POST', // or 'PUT'
