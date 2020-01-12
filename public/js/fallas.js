@@ -34,8 +34,6 @@ function init() {
     getIP();
     //carga toda la base de datos de mongo
     cargarMongo();
-    //comprueba si has votado
-    comprobarSiHaVotado();
 
     document.getElementsByName("seleccionTamano").forEach(element => element.addEventListener("change", promesaCreadoraDelTodo));
     document.getElementById("selectSeccionFallas").addEventListener("change", promesaCreadoraDelTodo);
@@ -65,12 +63,21 @@ function descargarJson() {
 
 function comprobarSiHaVotado() {
 
+    for (let i = 0; i < jsonMongo.length; i++) {
 
+        if (jsonMongo[i].ip == ip) {
+            puntuadoIp = true;
+        }
+
+    }
 
 }
 
 //es la funcion que lanza despues de descargar todo el json
 function promesaCreadoraDelTodo() {
+
+    //comprueba si has votado
+    comprobarSiHaVotado();
 
     //detecta que es todas
     if (document.getElementById("selectSeccionFallas").selectedIndex == -1) {
@@ -128,30 +135,39 @@ function promesaCreadoraDelTodo() {
         let boton = document.createElement("button");
         boton.innerHTML = "Enviar";
         boton.addEventListener("click", comprobarEnvio);
+
+        //pongo el boton desabilitado si has votado
+        if (puntuadoIp == true) {
+
+            boton.disabled = true;
+
+        }
+
         falla.appendChild(boton);
+
+        let Numero_Media = hacerMedia(iteracion.properties.id);
+
+        //para añadir la media, por default es 0 y redondear a la alza dependiendo de lo que page XD
+        let media = document.createElement("input");
+        media.setAttribute("type", "text");
+        media.disabled = true;
+        media.value = Numero_Media; //mas tarde añadire la media
+        media.classList.add("centradoMedia");
+        falla.appendChild(media);
         //ultimo paso
         document.getElementById("listaFallas").appendChild(falla);
 
-
     });
-
 }
 
 //funcion que coje la ip
 function getIP(obj) {
-
     try {
         ip = obj.ip;
-
-    } catch (error) {
-
-    }
-
-
+    } catch (error) {}
 }
 
-
-//esta funcion devuelve true or false si se cumple la condicion
+//esta funcion devuelve true or false si se cumple la condicion del filtro
 //----------------------AQUI ESTAN LOS FILTROS----------------------------
 function busquedaSeccion(iteracion) {
 
@@ -214,6 +230,7 @@ function cargarSecciones() {
 
     });
 
+    //añadir
     let opTodas = document.createElement("option");
     opTodas.innerHTML = "Todas";
     document.getElementById("selectSeccionFallas").appendChild(opTodas);
@@ -251,6 +268,28 @@ function cargarEstrellas(fallaTraida, iteracionTraida) {
     }
     //final
     fallaTraida.appendChild(formulario);
+
+}
+
+//funcion que hace la media
+function hacerMedia(id) {
+
+    let n_veces = 0;
+    let suma = 0;
+
+    //jsonMongo
+
+    for (let i = 0; i < jsonMongo.length; i++) {
+
+        //console.log(jsonMongo[i].ip);
+
+        if (jsonMongo[i].ip != "127.0.0.1" && jsonMongo[i].idFalla == id) {
+
+            console.log("es igual");
+
+        }
+
+    }
 
 }
 /*
@@ -330,6 +369,6 @@ function cargarMongo() {
         .catch(error => console.error('Error:', error))
         .then(respuesta =>
             console.log(jsonMongo = respuesta) /*, jsonMongo = respuesta*/
-        );
+        ) /*.then(comprobarSiHaVotado)*/ ;
 
 }
