@@ -1,8 +1,20 @@
+/*para cuando sea a tamaño movil*/
+
 @media (max-width: 700px) {
     .gridColumn {
         grid-template-columns: 100px;
     }
 }
+
+
+/*tamaño desktop*/
+
+
+/*|
+  |
+  |
+  |
+  V*/
 
 
 /*@media (min-width: 700px) and (orientation: landscape) { ... }*/
@@ -25,6 +37,8 @@ body #containerFallas {
     display: flex;
     justify-content: center;
     align-content: center;
+    position: fixed;
+    border: 1px solid red;
 }
 
 body #modificadores {
@@ -34,6 +48,10 @@ body #modificadores {
 .gridColumn {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+}
+
+.logo {
+    border: 1px solid red;
 }
 
 .falla {
