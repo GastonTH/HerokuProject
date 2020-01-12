@@ -146,6 +146,7 @@ function promesaCreadoraDelTodo() {
         falla.appendChild(boton);
 
         let Numero_Media = hacerMedia(iteracion.properties.id);
+        console.log("falla con id =:> " + iteracion.properties.id);
 
         //para añadir la media, por default es 0 y redondear a la alza dependiendo de lo que page XD
         let media = document.createElement("input");
@@ -272,7 +273,8 @@ function cargarEstrellas(fallaTraida, iteracionTraida) {
 }
 
 //funcion que hace la media
-function hacerMedia(id) {
+function
+hacerMedia(id) {
 
     let n_veces = 0;
     let suma = 0;
@@ -285,10 +287,16 @@ function hacerMedia(id) {
 
         if (jsonMongo[i].ip != "127.0.0.1" && jsonMongo[i].idFalla == id) {
 
-            console.log("es igual");
-
+            suma += jsonMongo[i].puntuacion;
+            n_veces++;
         }
+    }
 
+    if (suma == 0) {
+        return 0;
+    } else {
+        console.log(Math.ceil(suma / n_veces));
+        return Math.ceil(suma / n_veces);
     }
 
 }
