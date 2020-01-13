@@ -71,6 +71,16 @@ function comprobarSiHaVotado() {
 
     }
 
+    if (puntuadoIp == true) {
+        console.log("si");
+        //document.getElementById("votar").innerText = "Ya has votado";
+
+    } else {
+        console.log("no");
+        //document.getElementById("votar").innerText = "No has votado";
+
+    }
+
 }
 
 //es la funcion que lanza despues de descargar todo el json

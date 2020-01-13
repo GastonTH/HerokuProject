@@ -1,8 +1,9 @@
 @media (max-width: 700px) {
-  * {
-    background-color: red; } }
+  .gridColumn {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); } }
 body {
-  background-color: var(--color-auxiliar-1);
+  background-color: #AD2A2A;
   height: 100%;
   width: 100%; }
   body #containerFallas {
@@ -13,11 +14,18 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #e2f3f5; }
+    background-color: #FFFFFF; }
   body #modificadores {
     margin-left: 10px; }
   body #listaFallas {
     margin-top: 250px; }
+
+#logo {
+  width: 75px;
+  height: 75px;
+  background-image: url("/img/evilcorp.png");
+  background-size: 100%;
+  margin: 20px; }
 
 .gridColumn {
   display: grid;
@@ -26,10 +34,9 @@ body {
 .falla {
   height: 550px;
   width: 400px;
-  background-color: white;
-  border: 1px solid black;
+  background-color: #FFFFFF;
   /*margen variable*/
-  margin: var(--margin-div-falla);
+  margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center; }
