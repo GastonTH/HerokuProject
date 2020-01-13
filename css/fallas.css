@@ -44,6 +44,9 @@ body {
   #form label {
     size: 80px; }
 
+* {
+  color: 0; }
+
 /*input[type="radio"] {
     display: none;
 }*/

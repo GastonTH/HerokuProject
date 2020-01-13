@@ -1,123 +1,72 @@
-/*para cuando sea a tamaño movil*/
-
 @media (max-width: 700px) {
-    .gridColumn {
-        grid-template-columns: 100px;
-    }
-}
-
-
-/*tamaño desktop*/
-
-
-/*|
-  |
-  |
-  |
-  V*/
-
-
-/*@media (min-width: 700px) and (orientation: landscape) { ... }*/
-
-:root {
-    --color-auxiliar-1: #e2f3f5;
-    --color-auxiliar-2: #22d1ee;
-    --color-auxiliar-3: #3d5af1;
-    --color-auxiliar-4: #0e153a;
-    --margin-div-falla: 20px;
-}
-
+  * {
+    background-color: red; } }
 body {
-    background-color: var(--color-auxiliar-1);
-    height: 100%;
+  background-color: var(--color-auxiliar-1);
+  height: 100%;
+  width: 100%; }
+  body #containerFallas {
     width: 100%;
-}
-
-body #containerFallas {
     display: flex;
     justify-content: center;
     align-content: center;
     position: fixed;
-    border: 1px solid red;
-}
-
-body #modificadores {
-    margin-left: 10px;
-}
+    top: 0;
+    left: 0;
+    background-color: #e2f3f5; }
+  body #modificadores {
+    margin-left: 10px; }
+  body #listaFallas {
+    margin-top: 250px; }
 
 .gridColumn {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.logo {
-    border: 1px solid red;
-}
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); }
 
 .falla {
-    height: 450px;
-    width: 400px;
-    background-color: white;
-    border: 1px solid black;
-    /*margen variable*/
-    margin: var(--margin-div-falla);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.falla img {
+  height: 550px;
+  width: 400px;
+  background-color: white;
+  border: 1px solid black;
+  /*margen variable*/
+  margin: var(--margin-div-falla);
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .falla img {
     height: 300px;
     width: 300px;
-    margin-top: 10px;
-}
+    margin-top: 10px; }
 
 #form {
-    width: 250px;
-    margin: 0 auto;
-    height: 50px;
-}
-
-#form p {
-    text-align: center;
-}
-
-#form label {
-    size: 80px;
-}
-
-
-/*input[type="radio"] {
-    display: none;
-}*/
+  width: 250px;
+  margin: 0 auto;
+  height: 50px; }
+  #form p {
+    text-align: center; }
+  #form label {
+    size: 80px; }
 
 label {
-    color: grey;
-}
+  color: grey; }
 
 label:hover,
-label:hover~label {
-    color: orange;
-}
+label:hover ~ label {
+  color: orange; }
 
-input[type="radio"]:checked~label {
-    color: blue;
-}
+input[type="radio"]:checked ~ label {
+  color: blue; }
 
 .calificacion {
-    direction: rtl;
-    /* right to left */
-    unicode-bidi: bidi-override;
-}
-
-.pulsado,
-.pulsado~label {
-    color: orange;
-}
+  direction: rtl;
+  /* right to left */
+  unicode-bidi: bidi-override; }
 
 .centradoMedia {
-    text-align: center;
-}
+  text-align: center; }
 
+.pulsado,
+.pulsado ~ label {
+  color: orange; }
 
 /*# sourceMappingURL=fallas.css.map */

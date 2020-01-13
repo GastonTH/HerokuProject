@@ -1,26 +1,40 @@
-:root {
-    --color-auxiliar-1: #e2f3f5;
-    --color-auxiliar-2: #22d1ee;
-    --color-auxiliar-3: #3d5af1;
-    --color-auxiliar-4: #0e153a;
-    --margin-div-falla: 20px;
+@media (max-width: 700px) {
+    // version movil
+    * {
+        background-color: red;
+    }
 }
 
+$color-cabecera-containerFallas: #e2f3f5;
+$color-auxiliar-2: #22d1ee;
+$color-auxiliar-3: #3d5af1;
+$color-auxiliar-4: #0e153a;
+$margin-div-falla: 20px;
+$NOMBRE-EMPRESA: "evilcorp";
+//version ordenador , suponiendo que es apra evilcorp
 body {
     background-color: var(--color-auxiliar-1);
     height: 100%;
     width: 100%;
     #containerFallas {
+        width: 100%;
         display: flex;
         justify-content: center;
         align-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: $color-cabecera-containerFallas;
     }
     #modificadores {
         margin-left: 10px;
     }
+    #listaFallas {
+        margin-top: 250px;
+    }
 }
 
-.grid3column {
+.gridColumn {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
@@ -54,11 +68,6 @@ body {
     }
 }
 
-
-/*input[type="radio"] {
-    display: none;
-}*/
-
 label {
     color: grey;
 }
@@ -76,13 +85,6 @@ input[type="radio"]:checked~label {
     direction: rtl;
     /* right to left */
     unicode-bidi: bidi-override;
-}
-
-.hacerGrande {
-    //transition: linear;
-    //transform: scale(1.5);
-    //animation-duration: 1s;
-    //box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 .centradoMedia {
