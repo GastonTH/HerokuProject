@@ -1,7 +1,7 @@
 @media (max-width: 700px) {
   .gridColumn {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); } }
+    display: flex;
+    flex-direction: column; } }
 body {
   background-color: #91CB97;
   height: 100%;
@@ -21,8 +21,8 @@ body {
     margin-top: 250px; }
 
 #logo {
-  width: 75px;
-  height: 75px;
+  width: 150px;
+  height: 150px;
   background-image: url("/img/cthulhu.jpg");
   background-size: 100%;
   margin: 20px; }
@@ -32,7 +32,7 @@ body {
   grid-template-columns: repeat(3, 1fr); }
 
 .falla {
-  height: 550px;
+  height: 450px;
   width: 400px;
   background-color: #FFFFFF;
   /*margen variable*/

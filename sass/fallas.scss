@@ -1,9 +1,10 @@
 @media (max-width: 700px) {
     // version movil
     .gridColumn {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        display: flex;
+        flex-direction: column;
     }
+    //ha faltado hacer la hamburgesa
 }
 
 $color-cabecera-containerFallas: #FFFFFF;
@@ -50,8 +51,8 @@ body {
 }
 
 #logo {
-    width: 75px;
-    height: 75px;
+    width: 150px;
+    height: 150px;
     background-image: url($srcImagenCoorporativa);
     background-size: 100%;
     margin: 20px
@@ -63,7 +64,7 @@ body {
 }
 
 .falla {
-    height: 550px;
+    height: 450px;
     width: 400px;
     background-color: $color-div-falla;
     /*margen variable*/
