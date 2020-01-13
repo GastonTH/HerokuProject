@@ -27,6 +27,9 @@ let ip = "";
 //variable que dice en que parte del selector de la seccion de fallas estas XD
 let sec = 0;
 
+//variable para identificar si se ha votado mas de 4 veces
+let borde = false;
+
 //init
 function init() {
 
@@ -156,6 +159,11 @@ function promesaCreadoraDelTodo() {
         falla.appendChild(boton);
 
         let Numero_Media = hacerMedia(iteracion.properties.id);
+
+        if (borde == true) {
+            falla.style.border = "2px solid yellow";
+        }
+
         console.log("falla con id =:> " + iteracion.properties.id);
 
         //para añadir la media, por default es 0 y redondear a la alza dependiendo de lo que page XD
@@ -300,6 +308,14 @@ hacerMedia(id) {
             suma += jsonMongo[i].puntuacion;
             n_veces++;
         }
+    }
+
+    if (n_veces >= 4) {
+
+        borde = true;
+
+    } else {
+        borde = false;
     }
 
     if (suma == 0) {
