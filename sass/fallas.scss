@@ -7,11 +7,25 @@
 }
 
 $color-cabecera-containerFallas: #FFFFFF;
-$color-div-falla: #FFFFFF;
-$color-fondo-pagina: #AD2A2A;
+$color-div-falla: "";
+$color-fondo-pagina: "";
 $color-auxiliar-4: #0e153a;
-$margin-div-falla: 20px;
-$NOMBRE-EMPRESA: "evilcorp";
+$NOMBRE-EMPRESA: "chtulhu";
+$srcImagenCoorporativa: "";
+@if ($NOMBRE-EMPRESA==chtulhu) {
+    $color-cabecera-containerFallas: #729876;
+    $color-fondo-pagina: #91CB97;
+    $color-div-falla: #FFFFFF;
+    $srcImagenCoorporativa: "/img/cthulhu.jpg"
+}
+
+@else if ($NOMBRE-EMPRESA==evilcorp) {
+    $color-cabecera-containerFallas: #ffffff;
+    $color-div-falla: #FFFFFF;
+    $color-fondo-pagina: #AD2A2A;
+    $srcImagenCoorporativa: "/img/evilcorp.png";
+}
+
 //version ordenador , suponiendo que es apra evilcorp
 body {
     background-color: $color-fondo-pagina;
@@ -38,7 +52,7 @@ body {
 #logo {
     width: 75px;
     height: 75px;
-    background-image: url("/img/evilcorp.png");
+    background-image: url($srcImagenCoorporativa);
     background-size: 100%;
     margin: 20px
 }

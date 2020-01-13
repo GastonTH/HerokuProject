@@ -3,7 +3,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr); } }
 body {
-  background-color: #AD2A2A;
+  background-color: #91CB97;
   height: 100%;
   width: 100%; }
   body #containerFallas {
@@ -14,7 +14,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #FFFFFF; }
+    background-color: #729876; }
   body #modificadores {
     margin-left: 10px; }
   body #listaFallas {
@@ -23,7 +23,7 @@ body {
 #logo {
   width: 75px;
   height: 75px;
-  background-image: url("/img/evilcorp.png");
+  background-image: url("/img/cthulhu.jpg");
   background-size: 100%;
   margin: 20px; }
 
