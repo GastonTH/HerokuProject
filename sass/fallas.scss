@@ -1,12 +1,3 @@
-@media (max-width: 700px) {
-    // version movil
-    .gridColumn {
-        display: flex;
-        flex-direction: column;
-    }
-    //ha faltado hacer la hamburgesa
-}
-
 $color-cabecera-containerFallas: #FFFFFF;
 $color-div-falla: "";
 $color-fondo-pagina: "";
@@ -27,6 +18,19 @@ $srcImagenCoorporativa: "";
     $srcImagenCoorporativa: "/img/evilcorp.png";
 }
 
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: $color-fondo-pagina;
+}
+
+
+/*
+
 //version ordenador , suponiendo que es apra evilcorp
 body {
     background-color: $color-fondo-pagina;
@@ -44,6 +48,7 @@ body {
     }
     #modificadores {
         margin-left: 10px;
+        border: 1px solid red;
     }
     #listaFallas {
         margin-top: 250px;
@@ -67,7 +72,6 @@ body {
     height: 450px;
     width: 400px;
     background-color: $color-div-falla;
-    /*margen variable*/
     margin: 10px;
     display: flex;
     flex-direction: column;
@@ -106,15 +110,15 @@ input[type="radio"]:checked~label {
 
 .calificacion {
     direction: rtl;
-    /* right to left */
-    unicode-bidi: bidi-override;
-}
 
+unicode-bidi: bidi-override;
+
+}
 .centradoMedia {
     text-align: center;
 }
-
 .pulsado,
 .pulsado~label {
     color: orange;
 }
+*/
