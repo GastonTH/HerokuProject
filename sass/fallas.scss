@@ -1,3 +1,4 @@
+//variables de colores
 $color-cabecera-containerFallas: #FFFFFF;
 $color-div-falla: "";
 $color-fondo-pagina: "";
@@ -18,8 +19,6 @@ $srcImagenCoorporativa: "";
     $srcImagenCoorporativa: "/img/evilcorp.png";
 }
 
-
-/*
 body,
 html {
     margin: 0;
@@ -28,9 +27,22 @@ html {
 
 body {
     background-color: $color-fondo-pagina;
+    #containerFallas {
+        border: 1px solid red;
+    }
 }
-*/
 
+h1 {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 0;
+}
+
+
+/*
 //version ordenador , suponiendo que es apra evilcorp
 body {
     background-color: $color-fondo-pagina;
@@ -120,4 +132,4 @@ input[type="radio"]:checked~label {
 .pulsado,
 .pulsado~label {
     color: orange;
-}
+}*/
