@@ -40,7 +40,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Require Puntuaciones routes
 require('./app/routes/puntuaciones.routes.js')(app);
 
+//importante para heroku
 let puerto = process.env.PORT || 3000;
+
 // Escuchemos en un puerto
 app.listen(puerto, () => {
     console.log(" * [ Mongo Fallero ] UP and Running en http://localhost:3000");
