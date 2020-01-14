@@ -18,6 +18,8 @@ $srcImagenCoorporativa: "";
     $srcImagenCoorporativa: "/img/evilcorp.png";
 }
 
+
+/*
 body,
 html {
     margin: 0;
@@ -27,9 +29,7 @@ html {
 body {
     background-color: $color-fondo-pagina;
 }
-
-
-/*
+*/
 
 //version ordenador , suponiendo que es apra evilcorp
 body {
@@ -48,7 +48,7 @@ body {
     }
     #modificadores {
         margin-left: 10px;
-        border: 1px solid red;
+        //border: 1px solid red;
     }
     #listaFallas {
         margin-top: 250px;
@@ -110,15 +110,14 @@ input[type="radio"]:checked~label {
 
 .calificacion {
     direction: rtl;
-
-unicode-bidi: bidi-override;
-
+    unicode-bidi: bidi-override;
 }
+
 .centradoMedia {
     text-align: center;
 }
+
 .pulsado,
 .pulsado~label {
     color: orange;
 }
-*/
