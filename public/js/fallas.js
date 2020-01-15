@@ -6,6 +6,9 @@ let jsonFile;
 //value de la seccion
 let seccionFiltro = "";
 
+//variable que asigna la columna
+let columna = 1;
+
 //desde y hasta para el filtro
 
 let desde = "";
@@ -45,6 +48,7 @@ function init() {
 
     //descarga todo el json de las fallas
     descargarJson();
+
 
 }
 
@@ -164,7 +168,7 @@ function promesaCreadoraDelTodo() {
             falla.style.border = "2px solid yellow";
         }
 
-        console.log("falla con id =:> " + iteracion.properties.id);
+        //console.log("falla con id =:> " + iteracion.properties.id);
 
         //para añadir la media, por default es 0 y redondear a la alza dependiendo de lo que page XD
         let media = document.createElement("input");
@@ -174,8 +178,29 @@ function promesaCreadoraDelTodo() {
         media.classList.add("centradoMedia");
         falla.appendChild(media);
         //ultimo paso
-        document.getElementById("listaFallas").appendChild(falla);
 
+        //anyadir las fallas a una columna cada vez
+
+        document.getElementById('listaFallas').appendChild(falla);
+        console.log(document.getElementById("col" + columna));
+
+        switch (columna) {
+
+            case 1:
+                columna = 2;
+                break;
+
+            case 2:
+                columna = 3;
+                break;
+
+            case 3:
+                columna = 1;
+                break;
+
+            default:
+                break;
+        }
     });
 }
 

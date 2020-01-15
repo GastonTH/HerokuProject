@@ -16,6 +16,14 @@ h1 {
   left: 0;
   margin-top: 0; }
 
+#listaFallas #columna1,
+#listaFallas #columna2,
+#listaFallas #columna3 {
+  width: 33%;
+  border: 1px solid red;
+  float: left;
+  margin-right: 2px; }
+
 /*
 //version ordenador , suponiendo que es apra evilcorp
 body {
