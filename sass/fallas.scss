@@ -19,6 +19,8 @@ $srcImagenCoorporativa: "";
     $srcImagenCoorporativa: "/img/evilcorp.png";
 }
 
+
+/*
 body,
 html {
     margin: 0;
@@ -56,7 +58,8 @@ h1 {
 }
 
 
-/*
+*/
+
 //version ordenador , suponiendo que es apra evilcorp
 body {
     background-color: $color-fondo-pagina;
@@ -146,4 +149,4 @@ input[type="radio"]:checked~label {
 .pulsado,
 .pulsado~label {
     color: orange;
-}*/
+}
